@@ -4,25 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>中转站</title>
   </head>
   <body>
     <script>
-      var config = {
-        'thermometer1': {
-          title: '体温单版本一',
-          src: 'http://192.168.2.10:8080',
-        },
-        'thermometer2': {
-          title: '体温单版本二',
-          src: 'http://192.168.2.10:8839/',
-        },
-        'form-editor': {
-          title: '表单编辑器',
-          src: 'http://192.168.2.10:8839/',
-        }
-      }
-
+      var ip = '192.168.2.10';
+      var port = {
+        'thermometer1': 8080, // 体温单版本一
+        'thermometer2': 8080, // 体温单版本二
+        'form-editor': 8839, // 表单编辑器
+      };
       var queryString = window.location.search;
       var queryObject = {};
       if (queryString) {
@@ -34,11 +25,7 @@
           queryObject[key] = value;
         }
       }
-
-      var website = config[queryObject.to];
-
-      // 直接跳转
-      window.location.href = website.src;
+      window.location.href = 'http://' + ip + ':' + port[queryObject.to];
     </script>
   </body>
 </html>
