@@ -1,18 +1,60 @@
-<html>
-  
-<head>
-  <meta charset="utf-8">
-  <title></title>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      html,body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe></iframe>
+    <script>
+      var config = {
+        'thermometer1': {
+          title: '体温单版本一',
+          src: 'http://192.168.2.10:8080',
+        },
+        'thermometer2': {
+          title: '体温单版本二',
+          src: 'http://192.168.2.10:8839/',
+        },
+        'form-editor': {
+          title: '表单编辑器',
+          src: 'http://192.168.2.10:8839/',
+        }
+      }
 
-  <style type="text/css">
-    
-  </style>
+      var queryString = window.location.search;
+      var queryObject = {};
+      if (queryString) {
+        var queryArray = queryString.substr(1).split('&');
+        for (var i = 0; i < queryArray.length; i++) {
+          var keyValue = queryArray[i].split('=');
+          var key = decodeURIComponent(keyValue[0]);
+          var value = decodeURIComponent(keyValue[1] || '');
+          queryObject[key] = value;
+        }
+      }
 
-</head>
-
-<body>
-  <p>12345</p>
-
-</body>
-
+      var website = config[queryObject.to];
+      document.title = website.title;
+      document.querySelector("iframe").src = website.src;
+    </script>
+  </body>
 </html>
