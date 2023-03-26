@@ -5,25 +5,8 @@
     <link rel="icon" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
-    <style>
-      html,body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-y: hidden;
-      }
-      iframe {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        border: none;
-      }
-    </style>
   </head>
   <body>
-    <iframe></iframe>
     <script>
       var config = {
         'thermometer1': {
@@ -53,8 +36,9 @@
       }
 
       var website = config[queryObject.to];
-      document.title = website.title;
-      document.querySelector("iframe").src = website.src;
+
+      // 直接跳转
+      window.location.href = website.src;
     </script>
   </body>
 </html>
